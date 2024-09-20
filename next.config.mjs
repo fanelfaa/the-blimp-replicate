@@ -1,4 +1,8 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {};
+const nextConfig = {
+  images: {
+    remotePatterns: [{ hostname: 'blimp.b-cdn.net' }],
+  },
+};
 
 export default nextConfig;

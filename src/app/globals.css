@@ -79,3 +79,10 @@ header.site-header a:hover{
 .post-card:hover .crops-f:before{
   animation: blink .1s linear infinite;
 }
+
+.post-card img {
+  filter: grayscale(1);
+}
+.post-card:hover img {
+  filter: none;
+}

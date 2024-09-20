@@ -1,21 +1,19 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, Variants } from 'framer-motion';
 
 import React from 'react';
 import 'lenis/dist/lenis.css';
 import { PostCard } from '@/components/post-card';
 
+const pageVariants: Variants = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1, transition: { staggerChildren: 0.05 } },
+};
+
 export default function Home() {
   return (
-    <motion.main
-      variants={{
-        hidden: { opacity: 0 },
-        visible: { opacity: 1, transition: { delay: 0.3 } },
-      }}
-      initial="hidden"
-      animate="visible"
-    >
+    <motion.main variants={pageVariants}>
       <div className="sticky top-0">
         <section
           style={{
@@ -33,11 +31,10 @@ export default function Home() {
           >
             {Array.from(Array(5).keys()).map((i) => (
               <PostCard
-                delay={i * 0.05 + 0.3}
                 key={i}
                 style={{ gridArea: i === 0 ? '1/1/3/3' : undefined }}
                 lead="IN THE RED"
-                title="ALAN VEGA _ INSURRECTION"
+                title="Alan Vega – Insurrection"
                 genres={['ELECTRONICS']}
                 big={i === 0}
               />
