@@ -1,24 +1,21 @@
 'use client';
 
-import Lenis from 'lenis';
-import { useEffect } from 'react';
+import { motion } from 'framer-motion';
 
+import React from 'react';
 import 'lenis/dist/lenis.css';
+import { PostCard } from '@/components/post-card';
 
 export default function Home() {
-  useEffect(() => {
-    const lenis = new Lenis();
-
-    function raf(time: number) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
-
-    requestAnimationFrame(raf);
-  }, []);
-
   return (
-    <main>
+    <motion.main
+      variants={{
+        hidden: { opacity: 0 },
+        visible: { opacity: 1, transition: { delay: 0.3 } },
+      }}
+      initial="hidden"
+      animate="visible"
+    >
       <div className="sticky top-0">
         <section
           style={{
@@ -34,21 +31,17 @@ export default function Home() {
             }}
             className="grid gap-5 flex-grow"
           >
-            <li className="relative" style={{ gridArea: '1/1/3/3' }}>
-              <article className="h-full bg-foreground"></article>
-            </li>
-            <li>
-              <article className="h-full bg-foreground"></article>
-            </li>
-            <li>
-              <article className="h-full bg-foreground"></article>
-            </li>
-            <li>
-              <article className="h-full bg-foreground"></article>
-            </li>
-            <li>
-              <article className="h-full bg-foreground"></article>
-            </li>
+            {Array.from(Array(5).keys()).map((i) => (
+              <PostCard
+                delay={i * 0.05 + 0.3}
+                key={i}
+                style={{ gridArea: i === 0 ? '1/1/3/3' : undefined }}
+                lead="IN THE RED"
+                title="ALAN VEGA _ INSURRECTION"
+                genres={['ELECTRONICS']}
+                big={i === 0}
+              />
+            ))}
           </ul>
         </section>
       </div>
@@ -57,9 +50,9 @@ export default function Home() {
         <section
           style={{
             padding: '50px 10px',
-            height: 777,
+            height: '100vh',
           }}
-          className="bg-blue-200 flex flex-col"
+          className="bg-background flex flex-col"
         >
           <ul
             style={{
@@ -70,6 +63,6 @@ export default function Home() {
           ></ul>
         </section>
       </div>
-    </main>
+    </motion.main>
   );
 }

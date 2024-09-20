@@ -25,3 +25,57 @@ body {
     text-wrap: balance;
   }
 }
+
+@keyframes blink {
+  50%{
+    opacity: 0;
+  }  
+}
+
+header.site-header a:hover{
+  animation: blink 51ms linear infinite;
+}
+
+
+.display-3{
+  font-size: clamp(24px, 18vw, 28px);
+  line-height: .9;
+  letter-spacing: -.03em;
+}
+
+.display-4 {
+  line-height: .9;
+  letter-spacing: -.03em;
+  font-size: clamp(24px, 10vw, 28px);
+}
+
+@media (min-width: 1200px){
+  .display-3 {
+    font-size: clamp(24px, 18vw, 48px);
+  }
+  .display-4 {
+    font-size: clamp(24px, 18vw, 28px);
+  }
+}
+
+.crops-f{
+  position: relative;
+}
+
+.crops-f:before{
+  content: "";
+  position: absolute;
+  width: calc(100% + 10px);
+  height: calc(100% + 10px);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-image: linear-gradient(#000, #000), linear-gradient(#000, #000), linear-gradient(#000, #000), linear-gradient(#000, #000), linear-gradient(#000, #000), linear-gradient(#000, #000), linear-gradient(#000, #000), linear-gradient(#000, #000);
+  background-repeat: no-repeat;
+  background-size: 16px 1px, 1px 16px, 1px 16px, 16px 1px, 16px 1px, 1px 16px, 16px 1px, 1px 16px;
+  background-position: 0 0, 0 0, 100% 0, 100% 0, 100% 100%, 100% 100%, 0 100%, 0 100%;
+}
+
+.post-card:hover .crops-f:before{
+  animation: blink .1s linear infinite;
+}

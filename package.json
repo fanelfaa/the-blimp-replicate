@@ -5,14 +5,17 @@
   "scripts": {
     "dev": "next dev -p 4000",
     "build": "next build",
-    "start": "next start",
+    "start": "next start -p 4000",
     "lint": "npx eslint . --fix"
   },
   "dependencies": {
+    "clsx": "^2.1.1",
+    "framer-motion": "^11.5.5",
     "lenis": "^1.1.13",
     "next": "14.2.12",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "tailwind-merge": "^2.5.2"
   },
   "devDependencies": {
     "@types/node": "^20",
