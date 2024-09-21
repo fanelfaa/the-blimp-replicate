@@ -38,7 +38,8 @@ export const PreviousAlbums = () => {
         <section
           style={{
             padding: '290px 10px 40px',
-            height: 'calc(100vh + 5px)',
+            maxHeight: 'calc(100vh + 5px)',
+            overflow: 'hidden',
           }}
           className="bg-background flex flex-col text-foreground font-mono text-xs overflow-hidden relative"
         >
@@ -88,9 +89,11 @@ export const PreviousAlbums = () => {
                       </div>
                       <div className="col-span-4">
                         <span className="h-w">
-                          {i % 3 === 0 || i % 5 === 0
+                          {i % 3 === 0
                             ? 'King Gizzard & The Lizard Wizard – The Silver Cord'
-                            : 'The Conformists – Midwestless'}
+                            : i % 5 === 0
+                              ? 'Pan American & Kramer – Reverberations of Non​-​Stop Traffic on Redding Road'
+                              : 'The Conformists – Midwestless'}
                         </span>
                       </div>
                       <div className="col-span-3 col-start-6">
@@ -107,7 +110,7 @@ export const PreviousAlbums = () => {
           </div>
         </section>
       </div>
-      <div ref={targetScrollRef} className="target h-10"></div>
+      <div ref={targetScrollRef} className="h-10 pointer-events-none"></div>
     </>
   );
 };
