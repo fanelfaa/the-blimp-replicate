@@ -17,7 +17,7 @@ export const PostCard: React.FC<{
 }> = ({ style, lead, title, big, genres }) => {
   return (
     <motion.li
-      className="h-full bg-foreground hover:bg-background text-background hover:text-white transition-colors duration-300"
+      className="min-h-[330px] bg-foreground hover:bg-background text-background hover:text-white transition-colors duration-300"
       variants={postCardVariants}
       transition={{ type: 'tween' }}
       style={style}

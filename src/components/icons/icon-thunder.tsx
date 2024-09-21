@@ -1,4 +1,4 @@
-export const IconThunder: React.FC<{ className?: string }> = (props) => (
+export const IconThunder: React.FC<React.HTMLProps<SVGSVGElement>> = (props) => (
   <svg
     {...props}
     width="12"

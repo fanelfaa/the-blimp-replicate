@@ -36,6 +36,14 @@ header.site-header a:hover{
   animation: blink 51ms linear infinite;
 }
 
+.animate-blink:hover{
+  animation: blink 51ms linear infinite;
+}
+
+.lead-1 {
+  font-size: 12px;
+  letter-spacing: .02em;
+}
 
 .display-3{
   font-size: clamp(24px, 18vw, 28px);
@@ -62,7 +70,7 @@ header.site-header a:hover{
   position: relative;
 }
 
-.crops-f:before{
+.crops-f::before{
   content: "";
   position: absolute;
   width: calc(100% + 10px);
@@ -76,7 +84,30 @@ header.site-header a:hover{
   background-position: 0 0, 0 0, 100% 0, 100% 0, 100% 100%, 100% 100%, 0 100%, 0 100%;
 }
 
-.post-card:hover .crops-f:before{
+.crops-h {
+  display: inline-block;
+  position: relative;
+}
+
+.crops-h::before {
+  content: "";
+  position: absolute;
+  width: calc(100% + 10px);
+  height: calc(100% + 5px);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  background-repeat: no-repeat;
+  background-size: 16px 1px, 1px 14px, 16px 1px, 1px 16px;
+  background-position: 0 0, 0 0, 100% 100%, 100% 100%;
+}
+
+.crops-h-w::before{
+  background-image: linear-gradient(#c1c1bd, #c1c1bd), linear-gradient(#c1c1bd, #c1c1bd), linear-gradient(#c1c1bd, #c1c1bd), linear-gradient(#c1c1bd, #c1c1bd);
+}
+
+.post-card:hover .crops-f::before{
   animation: blink .1s linear infinite;
 }
 
@@ -85,4 +116,8 @@ header.site-header a:hover{
 }
 .post-card:hover img {
   filter: none;
+}
+
+a{
+  cursor: pointer;
 }
