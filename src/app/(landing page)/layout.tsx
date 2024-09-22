@@ -1,5 +1,6 @@
 'use client';
 
+import { CursorEffect } from '@/components/cursor';
 import { Header } from '@/components/header';
 import { LenisWrapper } from '@/components/lenis';
 import { AnimatePresence, motion, useAnimationControls, Variants } from 'framer-motion';
@@ -26,20 +27,23 @@ export default function LandngPageLayout({
   }, []);
 
   return (
-    <LenisWrapper>
-      <AnimatePresence>
-        <motion.div
-          key={pathname}
-          variants={layoutVariants}
-          initial="hidden"
-          animate={constrols}
-          exit="hidden"
-          style={{ position: 'relative' }}
-        >
-          <Header />
-          {children}
-        </motion.div>
-      </AnimatePresence>
-    </LenisWrapper>
+    <>
+      <LenisWrapper>
+        <AnimatePresence>
+          <motion.div
+            key={pathname}
+            variants={layoutVariants}
+            initial="hidden"
+            animate={constrols}
+            exit="hidden"
+            style={{ position: 'relative' }}
+          >
+            <Header />
+            {children}
+          </motion.div>
+        </AnimatePresence>
+      </LenisWrapper>
+      <CursorEffect />
+    </>
   );
 }

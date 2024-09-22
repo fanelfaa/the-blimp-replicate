@@ -7,6 +7,7 @@ specifiers:
   '@typescript-eslint/eslint-plugin': ^8.6.0
   '@typescript-eslint/parser': ^8.6.0
   clsx: ^2.1.1
+  es-toolkit: ^1.20.0
   eslint: ^8.57.1
   eslint-config-next: ^14.2.12
   eslint-config-prettier: ^9.1.0
@@ -23,6 +24,7 @@ specifiers:
 
 dependencies:
   clsx: 2.1.1
+  es-toolkit: 1.20.0
   framer-motion: 11.5.6_nnrd3gsncyragczmpvfhocinkq
   lenis: 1.1.13_nnrd3gsncyragczmpvfhocinkq
   next: 14.2.12_nnrd3gsncyragczmpvfhocinkq
@@ -1044,6 +1046,10 @@ packages:
       is-date-object: 1.0.5
       is-symbol: 1.0.4
     dev: true
+
+  /es-toolkit/1.20.0:
+    resolution: {integrity: sha512-dRaoLJVlrQEHGTwSLHcozC/371qY+5QYRsm9JZncos35zcGHyS00ogRTghzRyJLOTrOTWg/8qj+ckvLWPnYP7g==}
+    dev: false
 
   /escape-string-regexp/4.0.0:
     resolution: {integrity: sha512-TtpcNJ3XAzx3Gq8sWRzJaVajRs0uVxA2YAkdb1jm2YkPz4G6egUFAyA3n5vtEIZefPk5Wa4UXbKuS5fKkJWdgA==}
