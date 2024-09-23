@@ -3,7 +3,7 @@ import { MotionStyle, Variants, motion } from 'framer-motion';
 import Image from 'next/image';
 
 const postCardVariants: Variants = {
-  hidden: { y: '100%' },
+  hidden: { y: 300 },
   visible: {
     y: 0,
   },

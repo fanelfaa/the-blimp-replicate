@@ -8,12 +8,12 @@ const albumsVariants: Variants = {
     opacity: 1,
     y: 0,
     visibility: 'visible',
-    transition: { staggerChildren: 0.05, delayChildren: 0.1 },
+    transition: { staggerChildren: 0.02, duration: 0.5 },
   },
 };
 
 const albumItemVariants: Variants = {
-  hidden: { y: 50, opacity: 0 },
+  hidden: { y: 30, opacity: 0 },
   visible: {
     y: 0,
     opacity: 1,
