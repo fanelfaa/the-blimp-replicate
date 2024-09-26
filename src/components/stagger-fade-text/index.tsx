@@ -13,6 +13,7 @@ export const StaggerFadeText: React.FC<
   const { scrollYProgress } = useScroll({
     target: targetRef,
     offset: scrollOffset,
+    layoutEffect: false,
   });
 
   const allChars = useMemo(() => text.split(''), [text]);
