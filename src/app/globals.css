@@ -57,12 +57,21 @@ header.site-header a:hover{
   font-size: clamp(24px, 10vw, 28px);
 }
 
+.display-hero {
+  line-height: .8;
+  user-select: none;
+  font-size: clamp(32px, 12vw, 143px);
+}
+
 @media (min-width: 1200px){
   .display-3 {
     font-size: clamp(24px, 18vw, 48px);
   }
   .display-4 {
     font-size: clamp(24px, 18vw, 28px);
+  }
+  .display-hero {
+    font-size: clamp(1rem, calc(-1.03587rem + 10.17937vw), 15.1875rem);
   }
 }
 

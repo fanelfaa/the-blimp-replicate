@@ -1,4 +1,4 @@
-import { PostCard } from '@/components/post-card';
+import { FadeLi, PostCard } from '@/components/post-card';
 
 export const HighlightAlbums = () => {
   return (
@@ -17,14 +17,14 @@ export const HighlightAlbums = () => {
           className="grid gap-5 flex-grow"
         >
           {Array.from(Array(5).keys()).map((i) => (
-            <PostCard
-              key={i}
-              style={{ gridArea: i === 0 ? '1/1/3/3' : undefined }}
-              lead="IN THE RED"
-              title="Alan Vega – Insurrection"
-              genres={['ELECTRONICS']}
-              big={i === 0}
-            />
+            <FadeLi key={i} style={{ gridArea: i === 0 ? '1/1/3/3' : undefined }}>
+              <PostCard
+                lead="IN THE RED"
+                title="Alan Vega – Insurrection"
+                genres={['ELECTRONICS']}
+                big={i === 0}
+              />
+            </FadeLi>
           ))}
         </ul>
       </section>

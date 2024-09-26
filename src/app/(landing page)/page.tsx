@@ -6,6 +6,7 @@ import React from 'react';
 import 'lenis/dist/lenis.css';
 import { HighlightAlbums } from './_section/highlight-albums';
 import { PreviousAlbums } from './_section/previous-albums';
+import { AlbumOfTheWeek } from './_section/album-of-the-week';
 
 const pageVariants: Variants = {
   hidden: { opacity: 0 },
@@ -17,7 +18,8 @@ export default function Home() {
     <motion.main variants={pageVariants}>
       <HighlightAlbums />
       <PreviousAlbums />
-      <div className="h-screen bg-foreground sticky top-0"></div>
+      <AlbumOfTheWeek />
+      <div className="h-screen bg-background sticky top-0"></div>
     </motion.main>
   );
 }

@@ -3,7 +3,7 @@ import { motion, useScroll, useTransform, Variants } from 'framer-motion';
 import { useRef } from 'react';
 
 const albumsVariants: Variants = {
-  hidden: { opacity: 0, y: 100, visibility: 'hidden' },
+  hidden: { opacity: 0, y: 50, visibility: 'hidden' },
   visible: {
     opacity: 1,
     y: 0,
@@ -17,7 +17,7 @@ const albumItemVariants: Variants = {
   visible: {
     y: 0,
     opacity: 1,
-    transition: { duration: 0.3 },
+    transition: { duration: 0.5 },
   },
 };
 
@@ -29,8 +29,8 @@ export const PreviousAlbums = () => {
     offset: ['start end', 'end start'],
   });
 
-  const titleY = useTransform(scrollYProgress, [0, 1], [0, -500]);
-  const albumsY = useTransform(scrollYProgress, [0, 0.6], [0, -200]);
+  const titleY = useTransform(scrollYProgress, [0, 1], [0, -400]);
+  const albumsY = useTransform(scrollYProgress, [0, 0.6], [0, -250]);
 
   return (
     <>
@@ -110,7 +110,7 @@ export const PreviousAlbums = () => {
           </div>
         </section>
       </div>
-      <div ref={targetScrollRef} className="h-10 pointer-events-none"></div>
+      <div ref={targetScrollRef} className="h-1 pointer-events-none"></div>
     </>
   );
 };
