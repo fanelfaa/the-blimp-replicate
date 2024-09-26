@@ -13,7 +13,11 @@ export const SoonOver = () => {
   const y = useTransform(scrollYProgress, [0, 1], ['-40%', '0%']);
 
   return (
-    <motion.section className="bg-foreground relative" ref={containerRef} style={{ y }}>
+    <motion.section
+      className="bg-foreground relative"
+      ref={containerRef}
+      style={{ y, zIndex: 5 }}
+    >
       <ImageBabaluma className="w-full max-w-full h-auto" />
       <div className="flex items-center w-full h-[92px]">
         <div className="flex justify-between items-baseline font-mono text-background uppercase text-xs w-full">
