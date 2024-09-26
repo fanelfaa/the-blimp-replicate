@@ -1,3 +1,5 @@
+'use client';
+
 import {
   easeOut,
   useScroll,
@@ -25,6 +27,7 @@ export const SpreadChar = ({
   const { scrollYProgress } = useScroll({
     target: targetRef,
     offset,
+    layoutEffect: false,
   });
 
   const x = useTransform(scrollYProgress, [0, 0.9], [isFirst ? 0 : -baseX, 0], {
