@@ -7,6 +7,7 @@ import 'lenis/dist/lenis.css';
 import { HighlightAlbums } from './_section/highlight-albums';
 import { PreviousAlbums } from './_section/previous-albums';
 import { AlbumOfTheWeek } from './_section/album-of-the-week';
+import { SoundtrackForTheDay } from './_section/soundtrack-for-the-day';
 
 const pageVariants: Variants = {
   hidden: { opacity: 0 },
@@ -19,7 +20,8 @@ export default function Home() {
       <HighlightAlbums />
       <PreviousAlbums />
       <AlbumOfTheWeek />
-      <div className="h-screen bg-background sticky top-0"></div>
+      <SoundtrackForTheDay />
+      <div className="h-screen bg-foreground sticky top-0"></div>
     </motion.main>
   );
 }
