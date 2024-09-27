@@ -117,6 +117,14 @@ header.site-header a:hover{
   background-image: linear-gradient(#c1c1bd, #c1c1bd), linear-gradient(#c1c1bd, #c1c1bd), linear-gradient(#c1c1bd, #c1c1bd), linear-gradient(#c1c1bd, #c1c1bd);
 }
 
+.crops-h.crops-h--left-only::before {
+  background-size: 16px 1px, 1px 16px, 0 1px, 0 0;
+}
+
+.crops-h.crops-h--right-only::before {
+  background-size: 0 0, 0 0, 16px 1px, 1px 16px;
+}
+
 .post-card:hover .crops-f::before{
   animation: blink .1s linear infinite;
 }

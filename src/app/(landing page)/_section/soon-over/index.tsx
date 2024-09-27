@@ -22,9 +22,8 @@ export const SoonOver = () => {
       <div className="flex items-center w-full h-[92px]">
         <div className="flex justify-between items-baseline font-mono text-background uppercase text-xs w-full">
           <div
-            className="crops-h ml-[10px]"
+            className="crops-h crops-h--left-only ml-[10px]"
             style={{
-              backgroundSize: '16px 1px, 1px 16px, 0 1px, 0 0',
               height: 'calc(100% + 5px)',
             }}
           >
@@ -36,9 +35,8 @@ export const SoonOver = () => {
             an observation platform.
           </div>
           <div
-            className="crops-h mr-[10px]"
+            className="crops-h crops-h--right-only mr-[10px]"
             style={{
-              backgroundSize: '0, 0, 0, 0, 16px 1px, 1px 16px',
               height: 'calc(100% + 5px)',
             }}
           >
