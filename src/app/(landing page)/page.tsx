@@ -26,7 +26,6 @@ export default function Home() {
       <SoundtrackForTheDay />
       <SoonOver />
       <BackToTop />
-      <div className="h-screen bg-green-500 sticky top-0"></div>
     </motion.main>
   );
 }

@@ -1,6 +1,7 @@
 'use client';
 
 import { CursorEffect } from '@/components/cursor';
+import { Footer } from '@/components/footer';
 import { Header } from '@/components/header';
 import { LenisWrapper } from '@/components/lenis';
 import { AnimatePresence, motion, useAnimationControls, Variants } from 'framer-motion';
@@ -40,6 +41,7 @@ export default function LandngPageLayout({
           >
             <Header />
             {children}
+            <Footer />
           </motion.div>
         </AnimatePresence>
       </LenisWrapper>

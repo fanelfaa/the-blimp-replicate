@@ -7,12 +7,13 @@ export const BackToTop = () => {
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ['start end', 'end end'],
+    offset: ['start end', 'end 0.8'],
     layoutEffect: false,
   });
 
-  const y = useTransform(scrollYProgress, [0, 1], ['-50%', '0%']);
-  const bgColor = useTransform(scrollYProgress, [0, 1], ['#121212', '#c1c1bd']);
+  const y = useTransform(scrollYProgress, [0, 1], ['-60%', '0%']);
+  const opacity = useTransform(scrollYProgress, [0, 1], [0, 1]);
+  const bgColor = useTransform(scrollYProgress, [0.3, 1], ['#121212', '#c1c1bd']);
 
   function handleScrollToTop() {
     const lenis = new Lenis();
@@ -27,12 +28,12 @@ export const BackToTop = () => {
   return (
     <motion.section
       className="bg-background relative"
-      style={{ y, zIndex: 4 }}
+      style={{ zIndex: 4 }}
       ref={containerRef}
     >
       <motion.button
-        className="p-[100px] bg-foreground w-full animate-blink"
-        style={{ backgroundColor: bgColor }}
+        className="p-[100px] w-full animate-blink"
+        style={{ backgroundColor: bgColor, y, opacity }}
         onClick={handleScrollToTop}
       >
         <span className="crops-h uppercase font-mono text-xs text-background">
