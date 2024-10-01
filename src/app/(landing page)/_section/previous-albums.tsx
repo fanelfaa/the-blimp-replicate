@@ -1,6 +1,6 @@
 import { IconThunder } from '@/components/icons';
-import { motion, useScroll, useTransform, Variants } from 'framer-motion';
-import { useRef } from 'react';
+import { motion, useScroll, useSpring, useTransform, Variants } from 'framer-motion';
+import { useEffect, useRef, useState } from 'react';
 
 const albumsVariants: Variants = {
   hidden: { opacity: 0, y: 50, visibility: 'hidden' },
@@ -23,14 +23,28 @@ const albumItemVariants: Variants = {
 
 export const PreviousAlbums = () => {
   const targetScrollRef = useRef<HTMLDivElement>(null);
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const titleRef = useRef<HTMLDivElement>(null);
+  const [titleYSpace, setTitleYSpace] = useState(0);
 
   const { scrollYProgress } = useScroll({
     target: targetScrollRef,
     offset: ['start end', 'end start'],
+    layoutEffect: false,
   });
 
-  const titleY = useTransform(scrollYProgress, [0, 1], [0, -400]);
+  const titleYSpring = useSpring(scrollYProgress, { stiffness: 600, damping: 60 });
+  const titleY = useTransform(titleYSpring, [0, 0.8], [0, -titleYSpace]);
   const albumsY = useTransform(scrollYProgress, [0, 0.6], [0, -250]);
+
+  useEffect(() => {
+    if (titleRef.current && sectionRef.current) {
+      const titleYFromTop = titleRef.current.getBoundingClientRect().y;
+      const sectionYFromTop = sectionRef.current.getBoundingClientRect().y;
+      const titleYFromSection = titleYFromTop - sectionYFromTop;
+      setTitleYSpace(titleYFromSection - 100); // 100 px from top of screen
+    }
+  }, []);
 
   return (
     <>
@@ -42,6 +56,7 @@ export const PreviousAlbums = () => {
             overflow: 'hidden',
           }}
           className="bg-background flex flex-col text-foreground font-mono text-xs overflow-hidden relative"
+          ref={sectionRef}
         >
           <h2 className="flex gap-x-2 items-center uppercase lead-1 absolute top-9">
             <IconThunder style={{ marginRight: 10 }} />
@@ -49,7 +64,7 @@ export const PreviousAlbums = () => {
           </h2>
           <div className="grid grid-cols-12 items-center flex-1">
             <div className="col-span-4 uppercase">
-              <motion.div className="flex flex-col" style={{ y: titleY }}>
+              <motion.div className="flex flex-col" style={{ y: titleY }} ref={titleRef}>
                 <div>Latest Entries</div>
                 <h2 className="display-3 font-display">
                   Explore
