@@ -1,21 +1,25 @@
 import { cx } from '@/utils/cx';
 import Image from 'next/image';
+import { forwardRef } from 'react';
 
-export const PostCard: React.FC<
+// eslint-disable-next-line react/display-name
+export const PostCard = forwardRef<
+  HTMLDivElement,
   {
     lead: string;
     title: string;
     big?: boolean;
     genres: string[];
   } & React.HTMLProps<HTMLDivElement>
-> = ({ lead, title, big, genres, className, ...otherProps }) => {
+>(({ lead, title, big, genres, className, ...otherProps }, ref) => {
   return (
     <article
       className={cx(
-        'min-h-[600px] h-full post-card bg-foreground hover:bg-background text-background hover:text-white transition-colors duration-300',
+        'min-h-[600px] h-full post-card bg-foreground hover:bg-background text-background hover:text-white',
         className,
       )}
       {...otherProps}
+      ref={ref}
     >
       <a className="flex flex-col h-full p-2.5 cursor-pointer crops-f">
         <header>
@@ -38,13 +42,13 @@ export const PostCard: React.FC<
           <div className={cx('size-[300px]', 'relative')}>
             <Image
               fill
-              src="https://blimp.b-cdn.net/app/uploads/2024/07/a3113517095_10-300x300.jpg.webp"
+              src="https://blimp.b-cdn.net/app/uploads/2024/09/a4090379936_10-300x300.jpg.webp"
               alt={title}
-              className="bg-neutral-800 size-full"
+              className="bg-neutral-800 size-full !filter-none"
             />
           </div>
         </footer>
       </a>
     </article>
   );
-};
+});

@@ -3,8 +3,9 @@ import { SpreadChar } from '@/components/spread-char';
 import { StaggerFadeText } from '@/components/stagger-fade-text';
 
 import { motion, useScroll, useSpring, useTransform } from 'framer-motion';
-import { useRef } from 'react';
+import { MouseEventHandler, useRef } from 'react';
 import { PostCard } from './post-card';
+import { randomInt } from 'es-toolkit';
 
 const description = `HARVESTMAN, the psych/folk/ambient project
 of Neurosis’ Steve Von Till, arises with its
@@ -21,10 +22,14 @@ North Idaho by Steve Von Till who creates
 the movements using guitars, bass, synths,
 percussion, stock tank,…`;
 
+const fgColors = ['#d6ccc0', '#2a375c', '#555a72', '#d4cbbb'];
+const bgColors = ['#c2bdb1', '#67687c', '#63697e', '#e4d8be'];
+
 export const AlbumOfTheWeek = () => {
   const startRef = useRef<HTMLDivElement>(null);
   const endRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+  const postcardRef = useRef<HTMLDivElement>(null);
 
   const { scrollYProgress } = useScroll({
     target: endRef,
@@ -34,12 +39,29 @@ export const AlbumOfTheWeek = () => {
   const yPostCard = useTransform(scrollYProgress, [0, 0.3], [0, -350]);
   const yPostCardSpring = useSpring(yPostCard, { stiffness: 600, damping: 60 });
 
+  const onMouseMove: MouseEventHandler<HTMLDivElement> = () => {
+    if (containerRef.current && postcardRef.current) {
+      containerRef.current.style.backgroundColor = bgColors[randomInt(3)];
+      const fgColor = fgColors[randomInt(3)];
+      containerRef.current.style.color = fgColor;
+      postcardRef.current.style.color = fgColor;
+    }
+  };
+
+  const onMouseLeave: MouseEventHandler<HTMLDivElement> = () => {
+    if (containerRef.current && postcardRef.current) {
+      containerRef.current.style.backgroundColor = '#b3b2ae';
+      containerRef.current.style.color = '#121212';
+      postcardRef.current.style.color = 'white';
+    }
+  };
+
   return (
     <>
       <div ref={startRef} className="h-10 pointer-events-none" />
       <div className="bg-[#b3b2ae] sticky top-0 h-screen" ref={containerRef}>
         <section className="uppercase relative h-full">
-          <h2 className="font-display display-hero mb-[20vh] px-3 text-background">
+          <h2 className="font-display display-hero mb-[20vh] px-3">
             <span className="flex justify-between">
               {'Album'.split('').map((c, i) => (
                 <SpreadChar key={'char' + c + i} isFirst={i === 0} targetRef={startRef}>
@@ -51,7 +73,7 @@ export const AlbumOfTheWeek = () => {
               <span>of</span>
               <span className="relative">
                 {' the '}
-                <div className="text-xs uppercase text-background absolute bottom-0 left-[150%] w-[350px] translate-y-full">
+                <div className="text-xs uppercase absolute bottom-0 left-[150%] w-[350px] translate-y-full">
                   <StaggerFadeText
                     text="Week: 39"
                     scrollOffset={['start 0.8', 'start 0.3']}
@@ -76,7 +98,7 @@ export const AlbumOfTheWeek = () => {
           </h2>
           <StaggerFadeText
             text={description}
-            className="font-mono text-background lead-1 max-w-[350px] absolute"
+            className="font-mono !text-background lead-1 max-w-[350px] absolute"
             style={{
               left: '5.5%',
               top: '22%',
@@ -92,7 +114,7 @@ export const AlbumOfTheWeek = () => {
               top: '65%',
             }}
           >
-            <span className="lead-1 uppercase font-mono text-background">Explore</span>
+            <span className="lead-1 uppercase font-mono">Explore</span>
             <IconThunderArrow className="-rotate-90 w-6 ml-4" />
           </div>
           <div className="grid grid-cols-12">
@@ -102,6 +124,9 @@ export const AlbumOfTheWeek = () => {
                 title="Alan Vega – Insurrection"
                 genres={['ELECTRONICS']}
                 className="w-[40vw] mx-auto"
+                onMouseMove={onMouseMove}
+                onMouseLeave={onMouseLeave}
+                ref={postcardRef}
               />
             </motion.div>
           </div>
