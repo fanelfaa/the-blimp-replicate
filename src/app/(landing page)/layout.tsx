@@ -4,9 +4,9 @@ import { CursorEffect } from '@/components/cursor';
 import { Footer } from '@/components/footer';
 import { Header } from '@/components/header';
 import { LenisWrapper } from '@/components/lenis';
+import { Preloader } from '@/components/preloader';
 import { AnimatePresence, motion, useAnimationControls, Variants } from 'framer-motion';
 import { usePathname } from 'next/navigation';
-import { useEffect } from 'react';
 
 const layoutVariants: Variants = {
   hidden: { opacity: 0 },
@@ -20,13 +20,6 @@ export default function LandngPageLayout({
   const pathname = usePathname();
   const constrols = useAnimationControls();
 
-  useEffect(() => {
-    setTimeout(() => {
-      constrols.start('visible');
-    }, 1000);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
   return (
     <>
       <LenisWrapper>
@@ -37,13 +30,14 @@ export default function LandngPageLayout({
             initial="hidden"
             animate={constrols}
             exit="hidden"
-            style={{ position: 'relative' }}
+            style={{ position: 'relative', isolation: 'isolate' }}
           >
             <Header />
             {children}
             <Footer />
           </motion.div>
         </AnimatePresence>
+        <Preloader onFinishAnimation={() => constrols.start('visible')} />
       </LenisWrapper>
       <CursorEffect />
     </>
