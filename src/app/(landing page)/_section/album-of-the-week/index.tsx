@@ -52,14 +52,17 @@ export const AlbumOfTheWeek = () => {
     if (containerRef.current && postcardRef.current) {
       containerRef.current.style.backgroundColor = '#b3b2ae';
       containerRef.current.style.color = '#121212';
-      postcardRef.current.style.color = 'white';
+      postcardRef.current.style.color = '#121212';
     }
   };
 
   return (
     <>
       <div ref={startRef} className="h-10 pointer-events-none" />
-      <div className="bg-[#b3b2ae] sticky top-0 h-screen" ref={containerRef}>
+      <div
+        className="bg-[#b3b2ae] text-background sticky top-0 h-screen"
+        ref={containerRef}
+      >
         <section className="uppercase relative h-full">
           <h2 className="font-display display-hero mb-[20vh] px-3">
             <span className="flex justify-between">
