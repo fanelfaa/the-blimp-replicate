@@ -29,6 +29,7 @@ export function Preloader({ onFinishAnimation }: { onFinishAnimation: () => void
       imageControls.start(() => 'exit');
       await delay(1000);
       await animate(scope.current, { opacity: 0 }, { duration: 0.5 });
+      await animate(scope.current, { display: 'none' });
       onFinishAnimation();
     };
     start();
