@@ -2,6 +2,7 @@
 
 import {
   AnimationControls,
+  easeIn,
   motion,
   useAnimate,
   useAnimationControls,
@@ -10,6 +11,7 @@ import { images } from './images';
 import { useEffect, useId } from 'react';
 import Image from 'next/image';
 import { delay } from 'es-toolkit';
+import './style.css';
 
 function getRandomInt(min: number, max: number) {
   min = Math.ceil(min);
@@ -23,12 +25,22 @@ export function Preloader({ onFinishAnimation }: { onFinishAnimation: () => void
   const imageControls = useAnimationControls();
   useEffect(() => {
     const start = async () => {
-      await animate('#images-spot', { opacity: 1 }, { duration: 0.01 });
-      await imageControls.start(() => 'visible');
+      await delay(500);
+      await Promise.all([
+        animate('h2', { x: 0 }, { duration: 0.5, ease: easeIn }),
+        animate('p', { opacity: 1 }, { duration: 0.5, ease: easeIn }),
+      ]);
+      await delay(1500);
+      await Promise.all([
+        animate('h2', { opacity: 0 }, { duration: 0.01, ease: easeIn }),
+        animate('p', { opacity: 0 }, { duration: 0.01, ease: easeIn }),
+        animate('#images-spot', { opacity: 1 }, { duration: 0.01 }),
+        imageControls.start(() => 'visible'),
+      ]);
       await delay(500);
       imageControls.start(() => 'exit');
       await delay(1000);
-      await animate(scope.current, { opacity: 0 }, { duration: 0.5 });
+      await animate(scope.current, { opacity: 0 }, { duration: 0.05 });
       await animate(scope.current, { display: 'none' });
       onFinishAnimation();
     };
@@ -36,8 +48,7 @@ export function Preloader({ onFinishAnimation }: { onFinishAnimation: () => void
   }, [animate, imageControls, onFinishAnimation, scope]);
 
   return (
-    <div className="fixed inset-0 h-screen w-screen z-50" ref={scope}>
-      <div className="absolute inset-0 bg-background"></div>
+    <div className="fixed inset-0 h-screen w-screen z-50 preloader" ref={scope}>
       <div className="absolute inset-0 bg-background flex items-center justify-center">
         <div className="relative size-[50px] opacity-0" id="images-spot">
           {images.map((src, i) => (
@@ -52,6 +63,25 @@ export function Preloader({ onFinishAnimation }: { onFinishAnimation: () => void
               index={i}
             />
           ))}
+        </div>
+      </div>
+      <div className="absolute inset-0 bg-transparent flex items-center">
+        <div className="flex w-full justify-between items-center text-sm font-mono">
+          <motion.p
+            style={{
+              x: 'calc(50vw - 50%)',
+              opacity: 0,
+            }}
+            className="crops-h"
+          >
+            SOON OVER BABALUMA
+          </motion.p>
+        </div>
+      </div>
+      <div className="absolute inset-0 bg-transparent flex items-center">
+        <div className="flex w-full justify-between items-center text-4xl px-5">
+          <motion.h2 style={{ x: 'calc(50vw - 100% - 24px)' }}>THE</motion.h2>
+          <motion.h2 style={{ x: 'calc(-50vw + 100% + 24px)' }}>BLIMP</motion.h2>
         </div>
       </div>
     </div>

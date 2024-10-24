@@ -1,0 +1,6 @@
+.preloader .crops-h::before{
+    background-image: linear-gradient(#c1c1bd, #c1c1bd),
+        linear-gradient(#c1c1bd, #c1c1bd),
+        linear-gradient(#c1c1bd, #c1c1bd),
+        linear-gradient(#c1c1bd, #c1c1bd)
+}
